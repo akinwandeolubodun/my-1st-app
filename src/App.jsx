@@ -1,35 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ToDoItem from "./ToDoItem";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function ToDoList() {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container board mt-3">
+        <div className="row text-center">
+          <h1>To Do List:</h1>
+          <p>
+            Click 'Add' to add a new to do and click a todo to cross it off!
+          </p>
+        </div>
+        <div className="row justify-center text-center">
+          {/* To Do Items will go here later */}
+          <ToDoItem toDoTask="Check the Kitchen" />
+          <ToDoItem toDoTask="Get my complimentary" />
+          <ToDoItem toDoTask="Get out and get home" /> 
+          <ToDoItem />
+        </div>
+        <div className="row mt-3 d-flex justify-content-center">
+          <div className="col-md-6 ">
+            <div className="input-group mb-3">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Write ToDo Task here..."
+                aria-label="ToDoInput"
+              />
+              <div className="input-group-append">
+                <button
+                  className="btn btn-primary h-100 m-0"
+                  type="button"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React by Olubee alone</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default ToDoList;
+
