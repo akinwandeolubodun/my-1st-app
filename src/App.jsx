@@ -14,9 +14,9 @@ function ToDoList() {
         </div>
         <div className="row justify-center text-center">
           {/* To Do Items will go here later */}
-          <ToDoItem toDoTask="Check the Kitchen" />
-          <ToDoItem toDoTask="Get my complimentary" />
-          <ToDoItem toDoTask="Get out and get home" /> 
+          <ToDoItem toDoTask="Check the Kitchen" urgency = {1} />
+          <ToDoItem toDoTask="Get my complimentary" urgency= {2}/>
+          <ToDoItem toDoTask="Get out and get home" urgency={3}/> 
           <ToDoItem />
         </div>
         <div className="row mt-3 d-flex justify-content-center">
