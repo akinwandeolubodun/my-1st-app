@@ -1,8 +1,33 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ToDoItem from "./ToDoItem";
+import { useState, useRef } from "react";
 
 function ToDoList() {
+
+  const [ToDoItems, setToDoItems] = useState([])
+  const inputRef = useRef();
+
+  function handleDelete(id) {
+
+    console.log(id)
+    setToDoItems(
+    ToDoItems.filter((toDo) => {
+    return toDo.id !== id;
+    }) 
+    )
+  }
+
+  function handleAdd() {
+
+    console.log(inputRef.current.value)
+    setToDoItems([...ToDoItems, {
+      text: inputRef.current.value,
+    id: Date.now()
+    }])
+    inputRef.current.value = ""
+  }
+  
   return (
     <>
       <div className="container board mt-3">
@@ -14,10 +39,15 @@ function ToDoList() {
         </div>
         <div className="row justify-center text-center">
           {/* To Do Items will go here later */}
-          <ToDoItem toDoTask="Check the Kitchen" urgency = {1} />
-          <ToDoItem toDoTask="Get my complimentary" urgency= {2}/>
-          <ToDoItem toDoTask="Get out and get home" urgency={3}/> 
-          <ToDoItem />
+          {
+            ToDoItems.map((toDo) => {
+              console.log(toDo.id)
+              return(
+                <ToDoItem key={toDo.id} toDoTask={toDo.text} handleDelete={() => handleDelete(toDo.id)}/>
+              )
+            })
+          }
+
         </div>
         <div className="row mt-3 d-flex justify-content-center">
           <div className="col-md-6 ">
@@ -27,10 +57,10 @@ function ToDoList() {
                 className="form-control"
                 placeholder="Write ToDo Task here..."
                 aria-label="ToDoInput"
+                ref={inputRef}
               />
               <div className="input-group-append">
-                <button
-                  className="btn btn-primary h-100 m-0"
+                <button onClick={handleAdd} className="btn btn-primary h-100 m-0"
                   type="button"
                 >
                   Add
